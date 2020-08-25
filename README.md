@@ -10,4 +10,4 @@ Execute migrations:\
   ` $ yarn typeorm migration:run `\
 \
 Rollback migrations:\
-  ` $ yarn typeorm migration:revert `\
+  ` $ yarn typeorm migration:revert `

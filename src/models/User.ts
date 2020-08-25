@@ -6,22 +6,27 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('appointments')
-class Appointment {
+@Entity('users')
+class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  provider: string;
+  name: string;
 
-  @Column('timestamp with time zone')
-  date: Date;
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
 
   @CreateDateColumn()
+  // eslint-disable-next-line camelcase
   created_at: Date;
 
   @UpdateDateColumn()
+  // eslint-disable-next-line camelcase
   updated_at: Date;
 }
 
-export default Appointment;
+export default User;

@@ -1,6 +1,6 @@
 ## Project dependencies:
-To run PostgreSQL on docker:
-    $ docker run gostack_postgres
+To run PostgreSQL on docker:\
+  `$ docker run gostack_postgres`
 
 ## TypeORM
 Create new migration:\
@@ -11,4 +11,3 @@ Execute migrations:\
 \
 Rollback migrations:\
   ` $ yarn typeorm migration:revert `\
-

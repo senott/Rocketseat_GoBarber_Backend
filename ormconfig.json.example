@@ -1,0 +1,8 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5433,
+  "username": "postgres",
+  "password": $DATABASE_PASSWORD,
+  "database": "gostack_gobarber"
+}

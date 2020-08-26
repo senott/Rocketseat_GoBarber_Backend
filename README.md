@@ -1,6 +1,6 @@
 ## Project dependencies:
 To run PostgreSQL on docker:\
-  `$ docker run gostack_postgres`
+  `$ docker start gostack_postgres`
 
 ## TypeORM
 Create new migration:\

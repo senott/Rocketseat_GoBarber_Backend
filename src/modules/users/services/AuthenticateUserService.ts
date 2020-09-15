@@ -1,26 +1,31 @@
-import { getRepository } from 'typeorm';
+/* eslint-disable no-useless-constructor */
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { injectable, inject } from 'tsyringe';
 
 import User from '@modules/users/infra/typeorm/entities/User';
 import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
+import IUsersRepository from '../repositories/IUsersRepository';
 
-interface Request {
+interface IRequest {
   email: string;
   password: string;
 }
 
+@injectable()
 class AuthenticateUserService {
+  // eslint-disable-next-line prettier/prettier
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+  ) {}
+
   public async execute({
     email,
     password,
-  }: Request): Promise<{ user: User; token: string }> {
-    const usersRepository = getRepository(User);
-
-    const user = await usersRepository.findOne({
-      where: { email },
-    });
+  }: IRequest): Promise<{ user: User; token: string }> {
+    const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
       throw new AppError(
@@ -37,8 +42,6 @@ class AuthenticateUserService {
         401,
       );
     }
-
-    delete user.password;
 
     const token = sign({}, authConfig.jwt.secret, {
       subject: user.id,

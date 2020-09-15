@@ -3,3 +3,4 @@ node_modules
 src/config/auth.ts
 tmp/*
 !tmp/.gitkeep
+coverage

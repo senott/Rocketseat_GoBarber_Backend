@@ -1,21 +1,10 @@
 import { Router } from 'express';
-import { container } from 'tsyringe';
 
-import AuthenticateUserService from '@modules/users/services/AuthenticateUserService';
+import SessionsController from '../controllers/SessionsController';
 
+const sessionsController = new SessionsController();
 const sessionsRouter = Router();
 
-sessionsRouter.post('/', async (request, response) => {
-  const { email, password } = request.body;
-
-  const authenticateUser = container.resolve(AuthenticateUserService);
-
-  const { user, token } = await authenticateUser.execute({ email, password });
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { password: _, ...returnUser } = user;
-
-  return response.json({ returnUser, token });
-});
+sessionsRouter.post('/', sessionsController.create);
 
 export default sessionsRouter;

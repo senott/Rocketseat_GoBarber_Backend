@@ -5,14 +5,19 @@ import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 import ResetPasswordService from './ResetPasswordService';
 
 let fakeUsersRepository: FakeUsersRepository;
+
 let fakeUserTokensRepository: FakeUserTokensRepository;
+
 let resetPasswordService: ResetPasswordService;
+
 let fakeHashProvider: FakeHashProvider;
 
 describe('ResetPasswordService', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
+
     fakeUserTokensRepository = new FakeUserTokensRepository();
+
     fakeHashProvider = new FakeHashProvider();
 
     resetPasswordService = new ResetPasswordService(

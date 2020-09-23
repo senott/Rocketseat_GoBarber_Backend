@@ -5,14 +5,19 @@ import FakeUserTokensRepository from '../repositories/fakes/FakeUserTokensReposi
 import SendForgotPasswordEmailService from './SendForgotPasswordEmailService';
 
 let fakeUsersRepository: FakeUsersRepository;
+
 let fakeMailProvider: FakeMailProvider;
+
 let fakeUserTokensRepository: FakeUserTokensRepository;
+
 let sendForgotPasswordEmail: SendForgotPasswordEmailService;
 
 describe('SendForgotPasswordEmail', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
+
     fakeMailProvider = new FakeMailProvider();
+
     fakeUserTokensRepository = new FakeUserTokensRepository();
 
     sendForgotPasswordEmail = new SendForgotPasswordEmailService(

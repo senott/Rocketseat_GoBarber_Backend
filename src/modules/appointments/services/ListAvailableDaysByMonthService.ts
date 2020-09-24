@@ -40,7 +40,7 @@ class ListAvailableDaysByMonthService {
       {
         length: daysInMonth,
       },
-      (value, index) => index + 1,
+      (_, index) => index + 1,
     );
     const availability = eachDayArray.map(day => {
       const appointmentsInDay = appointments.filter(appointment => {

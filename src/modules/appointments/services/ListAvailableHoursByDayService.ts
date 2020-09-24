@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable camelcase */
 import { injectable, inject } from 'tsyringe';
-import { getHours } from 'date-fns';
+import { getHours, isAfter } from 'date-fns';
 
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 
@@ -44,12 +44,19 @@ class ListAvailableHoursByDayService {
       (_, index) => index + startHour,
     );
 
+    const currentDate = new Date(Date.now());
+
     const availability = eachHourArray.map(hour => {
       const hasAppointment = appointments.find(
         appointment => getHours(appointment.date) === hour,
       );
 
-      return { hour, available: !hasAppointment };
+      const compareDate = new Date(year, month - 1, day, hour);
+
+      return {
+        hour,
+        available: !hasAppointment && isAfter(compareDate, currentDate),
+      };
     });
 
     return availability;

@@ -42,8 +42,6 @@ class ListAvailableDaysByMonthService {
       },
       (value, index) => index + 1,
     );
-    console.log(eachDayArray);
-
     const availability = eachDayArray.map(day => {
       const appointmentsInDay = appointments.filter(appointment => {
         return getDate(appointment.date) === day;
@@ -51,8 +49,6 @@ class ListAvailableDaysByMonthService {
 
       return { day, available: appointmentsInDay.length < 10 };
     });
-
-    console.log(appointments);
 
     return availability;
   }

@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable camelcase */
 import { injectable, inject } from 'tsyringe';
+import { getDate, getDaysInMonth } from 'date-fns';
 
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 
@@ -33,9 +34,27 @@ class ListAvailableDaysByMonthService {
       },
     );
 
+    const daysInMonth = getDaysInMonth(new Date(year, month - 1));
+
+    const eachDayArray = Array.from(
+      {
+        length: daysInMonth,
+      },
+      (value, index) => index + 1,
+    );
+    console.log(eachDayArray);
+
+    const availability = eachDayArray.map(day => {
+      const appointmentsInDay = appointments.filter(appointment => {
+        return getDate(appointment.date) === day;
+      });
+
+      return { day, available: appointmentsInDay.length < 10 };
+    });
+
     console.log(appointments);
 
-    return [{ available: false, day: 1 }];
+    return availability;
   }
 }
 

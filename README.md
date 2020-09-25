@@ -1,6 +1,15 @@
 ## Project dependencies:
-To run PostgreSQL on docker:\
-  `$ docker start gostack_postgres`
+  Create PostgreSQL docker container (run once):\
+    `$ docker run --name gostack_postegres -p 5433:5432`
+
+  After the container is created, to run PostgreSQL on docker:\
+    `$ docker start gostack_postgres`
+
+  Create MongoDB docker container (run once):\
+    `$ docker run --name gostack_mongodb -p 27017:27017 -d -t mongo`
+
+  After the container is created, to run MongoDB on docker:\
+    `$ docker start gostack_mongodb`
 
 ## TypeORM
 Create new migration:\

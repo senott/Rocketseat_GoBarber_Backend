@@ -13,11 +13,13 @@ describe('ListAvailableDaysByMonth', () => {
   it('should be able to list the hours where the provider is available to work', async () => {
     await fakeAppointmentsRepository.create({
       provider_id: '121212',
+      user_id: '987654321',
       date: new Date(2020, 9, 5, 8, 0, 0),
     });
 
     await fakeAppointmentsRepository.create({
       provider_id: '121212',
+      user_id: '987654321',
       date: new Date(2020, 9, 5, 10, 0, 0),
     });
 
@@ -41,11 +43,13 @@ describe('ListAvailableDaysByMonth', () => {
   it('should be able to list the hours, in the future, where the provider is available to work', async () => {
     await fakeAppointmentsRepository.create({
       provider_id: '121212',
+      user_id: '987654321',
       date: new Date(2020, 9, 5, 14, 0, 0),
     });
 
     await fakeAppointmentsRepository.create({
       provider_id: '121212',
+      user_id: '987654321',
       date: new Date(2020, 9, 5, 15, 0, 0),
     });
 

@@ -11,6 +11,10 @@ describe('ListAvailableDaysByMonth', () => {
   });
 
   it('should be able to list the days where the provider is available to work', async () => {
+    jest.spyOn(Date, 'now').mockImplementationOnce(() => {
+      return new Date(2020, 9, 3, 8).getTime();
+    });
+
     await fakeAppointmentsRepository.create({
       provider_id: '121212',
       user_id: '987654321',
@@ -89,6 +93,28 @@ describe('ListAvailableDaysByMonth', () => {
         { day: 5, available: false },
         { day: 6, available: true },
         { day: 7, available: true },
+      ]),
+    );
+  });
+
+  it('should not be able to list the days in the past as available to work', async () => {
+    jest.spyOn(Date, 'now').mockImplementationOnce(() => {
+      return new Date(2020, 5, 23, 8).getTime();
+    });
+
+    const availability = await listDays.execute({
+      provider_id: '121212',
+      year: 2020,
+      month: 5,
+    });
+
+    expect(availability).toEqual(
+      expect.arrayContaining([
+        { day: 21, available: false },
+        { day: 22, available: false },
+        { day: 23, available: true },
+        { day: 24, available: true },
+        { day: 25, available: true },
       ]),
     );
   });

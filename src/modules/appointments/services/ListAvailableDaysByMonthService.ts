@@ -42,12 +42,19 @@ class ListAvailableDaysByMonthService {
       },
       (_, index) => index + 1,
     );
+
+    const currentDate = new Date(Date.now());
+
     const availability = eachDayArray.map(day => {
       const appointmentsInDay = appointments.filter(appointment => {
         return getDate(appointment.date) === day;
       });
 
-      return { day, available: appointmentsInDay.length < 10 };
+      return {
+        day,
+        available:
+          appointmentsInDay.length < 10 && day >= currentDate.getDate(),
+      };
     });
 
     return availability;

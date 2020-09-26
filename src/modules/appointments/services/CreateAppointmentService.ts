@@ -46,12 +46,12 @@ class CreateAppointmentService {
       throw new AppError('Appointment cannot be created in the past.');
     }
 
-    if (provider_id === user_id) {
-      throw new AppError('User cannot have an appointment with himself.');
-    }
-
     if (await this.appointmentsRepository.findByDate(appointmentDate)) {
       throw new AppError('This appointment is already booked.');
+    }
+
+    if (provider_id === user_id) {
+      throw new AppError('User cannot have an appointment with himself.');
     }
 
     const appointment = await this.appointmentsRepository.create({

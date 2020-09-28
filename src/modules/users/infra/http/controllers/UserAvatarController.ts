@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
 
@@ -12,9 +13,6 @@ export default class UserAvatarController {
       avatarFileName: request.file.filename,
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password: _, ...returnUser } = user;
-
-    return response.json(returnUser);
+    return response.json({ user: classToClass(user) });
   }
 }

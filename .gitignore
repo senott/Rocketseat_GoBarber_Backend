@@ -4,3 +4,4 @@ src/config/auth.ts
 tmp/*
 !tmp/.gitkeep
 coverage
+.env

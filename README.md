@@ -11,6 +11,12 @@
   After the container is created, to run MongoDB on docker:\
     `$ docker start gostack_mongodb`
 
+  Create Redis docker container (run once):\
+    `$ docker run --name gostack_redis -p 6379:6379 -d -t redis:alpine`
+
+  After the container is created, to run Redis on docker:\
+    `$ docker start gostack_redis`
+
 ## TypeORM
 Create new migration:\
   ` $ yarn typeorm migration:create -n <name> `\

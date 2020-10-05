@@ -50,6 +50,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
               .padStart(2, '0')}-${month.toString().padStart(2, '0')}-${year}'`,
         ),
       },
+      relations: ['user'],
     });
 
     return appointments;

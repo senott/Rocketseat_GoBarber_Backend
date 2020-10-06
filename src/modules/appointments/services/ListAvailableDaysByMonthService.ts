@@ -53,7 +53,8 @@ class ListAvailableDaysByMonthService {
       return {
         day,
         available:
-          appointmentsInDay.length < 10 && day >= currentDate.getDate(),
+          appointmentsInDay.length < 10 &&
+          new Date(year, month - 1, day, 23, 59, 59) >= currentDate,
       };
     });
 

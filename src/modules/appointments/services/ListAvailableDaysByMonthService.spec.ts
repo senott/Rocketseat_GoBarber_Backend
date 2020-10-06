@@ -98,8 +98,8 @@ describe('ListAvailableDaysByMonth', () => {
   });
 
   it('should not be able to list the days in the past as available to work', async () => {
-    jest.spyOn(Date, 'now').mockImplementationOnce(() => {
-      return new Date(2020, 5, 23, 8).getTime();
+    jest.spyOn(Date, 'now').mockImplementation(() => {
+      return new Date(2020, 4, 23, 8).getTime();
     });
 
     const availability = await listDays.execute({

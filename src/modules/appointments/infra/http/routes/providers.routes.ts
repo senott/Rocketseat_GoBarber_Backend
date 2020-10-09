@@ -27,7 +27,7 @@ providersRouter.get(
 );
 
 providersRouter.get(
-  '/:providerid/available-hours',
+  '/:provider_id/available-hours',
   celebrate({
     [Segments.PARAMS]: {
       provider_id: Joi.string().uuid().required(),
